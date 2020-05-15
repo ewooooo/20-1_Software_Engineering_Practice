@@ -1,6 +1,6 @@
 package adapter;
 
-public interface MediaPackage {
+public interface VideoPlayer {
 	
 	void playFile(String filename);
 	
