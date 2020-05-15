@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="85.0" prefWidth="220.0"
+	xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.FarenheitGUIController">
+	<children>
+		<Button layoutX="68.0" layoutY="57.0" mnemonicParsing="false"
+			onAction="#handleRaise" text="Raise" />
+		<Label layoutX="7.0" layoutY="7.0" text="Farenheit Temperature" />
+		<TextField fx:id="temperatureField" layoutY="28.0"
+			prefHeight="23.0" prefWidth="220.0" text="32.0" />
+		<Button layoutX="117.0" layoutY="57.0" mnemonicParsing="false"
+			onAction="#handleLower" text="Lower" />
+	</children>
+</AnchorPane>
