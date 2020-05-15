@@ -5,27 +5,34 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import student.Student;
-import student.StudentMain;
-
-public class Manager<T extends Manageable> {	
-	public ArrayList<T> stList = new ArrayList<>();
-	
-	public void readFile(String filename, Factory<T> fac) {
-		T m = null;
+public class Manager {
+	protected ArrayList<Manageable> mList = new ArrayList<>();
+	public void readAll(String filename,Factory fac) {
+		Manageable st = null;
 		Scanner fs = openFile(filename);
 		while (fs.hasNext()) {
-			m = fac.create(fs);
-			m.read(fs);
-			if (stList.contains(m))
+			st = fac.create();
+			st.read(fs);
+			if (mList.contains(st))
 				continue;
-			stList.add(m);
+			mList.add(st);
 		}
 		fs.close();
 	}
 	public void printAll() {
-		for (T st : stList)
+		for (Manageable st : mList)
 			st.print();
+	}
+	
+	
+	//?
+	public ArrayList<Manageable> findAll(String kwd) {
+		ArrayList<Manageable> returnArr = new ArrayList<>();
+		for(Manageable m :mList) {
+			if(m.matches(kwd))
+				returnArr.add(m);
+		}
+		return returnArr;
 	}
 	private Scanner openFile(String filename) {
 	    Scanner scan = null;
@@ -37,30 +44,9 @@ public class Manager<T extends Manageable> {
 	    scan.nextLine();
 	    return scan;
 	}
-	
-	public T find(String kwd) {
-		for (T m : stList)
-			if (m.matches(kwd))
-				return m;
-		return null;
-	}
-	public ArrayList<T> findAll(String kwd) {
-		ArrayList<T> resultList = new ArrayList<>();
-		// var resultList = new ...  Java 9
-		for (T m : stList)
-			if (m.matches(kwd))
-				resultList.add(m);
-		return resultList;
-	}
 	public void search(String kwd) {
-		for (T m : stList)
-			if (m.matches(kwd))
-				m.print();
+		for (Manageable st : mList)
+			if(st.matches(kwd))
+				st.print();
 	}
 }
-
-
-
-
-
-
